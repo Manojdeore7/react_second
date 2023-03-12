@@ -6,8 +6,7 @@ function App() {
     <h2>Expense Itoms</h2>
     <ExpenseItems></ExpenseItems>
    </div>
-   //hi
-   //jai shree ram
+  
   );
 }
 
