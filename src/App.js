@@ -26,30 +26,17 @@ function App() {
       location:"IT"
     },
   ];
+   let arr=[];
+
+  expenses.forEach((e)=>{
+   arr.push(<ExpenseItems title={e.title} date={e.date} amount={e.amount} LocationOfExpenditure={e.location} />)
+  })
+  
   return (
    <div>
     <h2>Expense Itoms</h2>
-    <ExpenseItems 
-    title={expenses[0].title}
-    date={expenses[0].date}
-    amount={expenses[0].amount}
-    LocationOfExpenditure={expenses[0].location}
-    ></ExpenseItems>
-    <ExpenseItems
-    title={expenses[1].title}
-    date={expenses[1].date}
-    amount={expenses[1].amount}
-    LocationOfExpenditure={expenses[1].location}></ExpenseItems>
-    <ExpenseItems
-    title={expenses[2].title}
-    date={expenses[2].date}
-    amount={expenses[2].amount}
-    LocationOfExpenditure={expenses[2].location}></ExpenseItems>
-    <ExpenseItems
-    title={expenses[3].title}
-    date={expenses[3].date}
-    amount={expenses[3].amount}
-    LocationOfExpenditure={expenses[3].location}></ExpenseItems>
+    
+   {arr};
    </div>
   
   );
