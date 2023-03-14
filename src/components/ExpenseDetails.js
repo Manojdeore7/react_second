@@ -1,4 +1,5 @@
 import "./ExpenseItem.css";
+
 function ExpenseDetail(props) {
   return (
     <div className="expense-item__description">
