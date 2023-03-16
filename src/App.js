@@ -1,5 +1,6 @@
 import ExpenseItems from "./components/Expenses/ExpenseItems";
 import Card from "./components/UI/card";
+import AddExpense from "./components/form/addExpense";
 function App() {
   const expenses = [
     {
@@ -47,6 +48,7 @@ function App() {
   return (
     <div>
       <h2>Expense Itoms</h2>
+      <AddExpense />
       <Card className="manoj">{arr}</Card>
     </div>
   );
