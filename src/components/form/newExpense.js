@@ -1,18 +1,32 @@
 import React, { useState } from "react";
 import "./newExpense.css";
 function NewExpense() {
-  const [date, setDate] = useState("");
-  const [title, setTitle] = useState("");
-  const [amount, setAmount] = useState("");
+  // const [date, setDate] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [amount, setAmount] = useState("");
 
-  const enterDate = (event) => {
-    setDate(event.target.value);
+  const [userInput, setUserInput] = useState({
+    date: "",
+    title: "",
+    amount: "",
+  });
+  const enterDate = (e) => {
+    setUserInput({
+      ...userInput,
+      date: e.target.value,
+    });
   };
   function enterTitle(e) {
-    setTitle(e.target.value);
+    setUserInput({
+      ...userInput,
+      title: e.target.value,
+    });
   }
   function enterAmount(e) {
-    setAmount(e.target.value);
+    setUserInput({
+      ...userInput,
+      amount: e.target.value,
+    });
   }
   return (
     <form>
