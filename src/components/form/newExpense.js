@@ -1,26 +1,33 @@
+import React, { useState } from "react";
 import "./newExpense.css";
+function NewExpense() {
+  const [date, setDate] = useState("");
+  const [title, setTitle] = useState("");
+  const [amount, setAmount] = useState("");
 
-function newExpense() {
-  //   document.getElementById("date").addEventListener("onChange", (e) => {
-  //     console.log(e.target.value);
-  //   });
-  let click = (e) => {
-    console.log(e.target.value);
+  const enterDate = (event) => {
+    setDate(event.target.value);
   };
+  function enterTitle(e) {
+    setTitle(e.target.value);
+  }
+  function enterAmount(e) {
+    setAmount(e.target.value);
+  }
   return (
     <form>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Enter the Date</label>
-          <input onChange={click} type="date" />
+          <input onChange={enterDate} type="date" />
         </div>
         <div className="new-expense__control">
           <label>Enter The Expense Category</label>
-          <input type="text" />
+          <input type="text" onChange={enterTitle} />
         </div>
         <div className="new-expense__control">
           <label>Enter The Amount</label>
-          <input type="number" />
+          <input type="number" onChange={enterAmount} />
         </div>
         <div className="new-expense__actions">
           <button type="submit">Add Expense</button>
@@ -29,4 +36,4 @@ function newExpense() {
     </form>
   );
 }
-export default newExpense;
+export default NewExpense;
