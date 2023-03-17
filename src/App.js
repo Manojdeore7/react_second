@@ -1,8 +1,10 @@
+import React, { useState } from "react";
 import ExpenseItems from "./components/Expenses/ExpenseItems";
 import Card from "./components/UI/card";
 import AddExpense from "./components/form/addExpense";
+
 function App() {
-  const expenses = [
+  let expenses = [
     {
       id: "e1",
       title: "Toilet Paper",
@@ -32,23 +34,23 @@ function App() {
       location: "IT",
     },
   ];
+  let [Arr, expFun] = useState(expenses);
+  function saveHandler(data) {
+    expenses = Arr;
+    expenses.push(data);
+    console.log(expenses);
+    expFun(expenses);
+  }
   let arr = [];
 
-  expenses.forEach((e) => {
-    arr.push(
-      <ExpenseItems
-        title={e.title}
-        date={e.date}
-        amount={e.amount}
-        LocationOfExpenditure={e.location}
-      />
-    );
+  Arr.forEach((e) => {
+    arr.push(<ExpenseItems title={e.title} date={e.date} amount={e.amount} />);
   });
 
   return (
     <div>
       <h2>Expense Itoms</h2>
-      <AddExpense />
+      <AddExpense onSaveData={saveHandler} />
       <Card className="manoj">{arr}</Card>
     </div>
   );
