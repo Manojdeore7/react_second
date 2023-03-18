@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ExpenseItems from "./components/Expenses/ExpenseItems";
 import Card from "./components/UI/card";
 import AddExpense from "./components/form/addExpense";
+import Ffilter from "./components/Expenses/Ffilter";
 
 function App() {
   let expenses = [
@@ -34,23 +35,45 @@ function App() {
       location: "IT",
     },
   ];
-  let [Arr, expFun] = useState(expenses);
-  function saveHandler(data) {
-    expenses = Arr;
-    expenses.push(data);
-    console.log(expenses);
-    expFun(expenses);
-  }
-  let arr = [];
 
-  Arr.forEach((e) => {
-    arr.push(<ExpenseItems title={e.title} date={e.date} amount={e.amount} />);
-  });
+  var [Arr, ArrFun] = useState(expenses);
+  var [arr, arrFun] = useState([]);
+  const saveHandler = (data) => {
+    Arr.push(data);
+    arr = [];
+    Arr.forEach((e) => {
+      arr.push(
+        <ExpenseItems title={e.title} date={e.date} amount={e.amount} />
+      );
+    });
+    arrFun(arr);
+  };
+
+  // Arr.forEach((e) => {
+  //   arr.push(<ExpenseItems title={e.title} date={e.date} amount={e.amount} />);
+  // });
+  function onCheck(e) {
+    let array = Arr.filter((el) => {
+      if (e == "") {
+        return el;
+      }
+      return el.date.getFullYear() == e;
+    });
+    arr = [];
+    array.forEach((e) => {
+      arr.push(
+        <ExpenseItems title={e.title} date={e.date} amount={e.amount} />
+      );
+    });
+    arrFun(arr);
+  }
 
   return (
     <div>
       <h2>Expense Itoms</h2>
+
       <AddExpense onSaveData={saveHandler} />
+      <Ffilter check={onCheck}></Ffilter>
       <Card className="manoj">{arr}</Card>
     </div>
   );
