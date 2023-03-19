@@ -4,6 +4,7 @@ import Card from "./components/UI/card";
 import AddExpense from "./components/form/addExpense";
 import Ffilter from "./components/Expenses/Ffilter";
 import "./App.css";
+
 const Arr = [
   {
     id: "e1",
@@ -37,11 +38,30 @@ const Arr = [
 
 function App() {
   const [expenses, setExpenses] = useState(Arr);
+  var [content2, setContent2] = useState(
+    <div className="new-expense new-expense__actions ">
+      <button className="btn" onClick={activation}>
+        Add Expense
+      </button>
+    </div>
+  );
 
+  function activation() {
+    content2 = <AddExpense onSaveData={saveHandler} />;
+    setContent2(content2);
+  }
   const saveHandler = (data) => {
+    content2 = (
+      <div className="new-expense new-expense__actions ">
+        <button className="btn" onClick={activation}>
+          Add Expense
+        </button>
+      </div>
+    );
     setExpenses((pre) => {
       return [data, ...pre];
     });
+    setContent2(content2);
   };
   let [filterYear, setFilterYear] = useState("");
   let filterExpenses = expenses.filter((el) => {
@@ -53,9 +73,21 @@ function App() {
   function onCheck(ele) {
     setFilterYear(ele);
   }
-
+  //1
   let content = <diV className="data">Threre is no data present</diV>;
-  if (filterExpenses.length > 0) {
+  //2
+  if (filterExpenses.length == 1) {
+    content = filterExpenses.map((e, i) => {
+      return (
+        <ExpenseItems key={i} title={e.title} date={e.date} amount={e.amount} />
+      );
+    });
+    content.push(
+      <diV className="data">Threre is only one data ,Pleease Add more!</diV>
+    );
+  }
+  //3
+  if (filterExpenses.length > 1) {
     content = filterExpenses.map((e, i) => {
       return (
         <ExpenseItems key={i} title={e.title} date={e.date} amount={e.amount} />
@@ -67,7 +99,7 @@ function App() {
     <div>
       <h2>Expense Itoms</h2>
 
-      <AddExpense onSaveData={saveHandler} />
+      {content2}
 
       <Card className="manoj">
         <Ffilter check={onCheck}></Ffilter>

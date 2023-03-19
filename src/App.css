@@ -7,6 +7,22 @@
   font-weight: 700;
   font-size: medium;
 }
+.new-expense button {
+  font: inherit;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border: 1px solid #40005d;
+  background-color: #40005d;
+  color: white;
+  border-radius: 12px;
+  margin-right: 1rem;
+}
+.new-expense__actions {
+  text-align: center;
+}
+.btn{
+  
+}
 
 .App-logo {
   height: 40vmin;
