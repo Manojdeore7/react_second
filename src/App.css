@@ -1,7 +1,12 @@
 .App {
   text-align: center;
 }
-
+.data{
+  padding:  10px;
+  color: azure;
+  font-weight: 700;
+  font-size: medium;
+}
 
 .App-logo {
   height: 40vmin;
